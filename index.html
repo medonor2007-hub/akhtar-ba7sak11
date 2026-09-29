@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>اختار بحثك</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f5f0;--nv:#14284b;--ink:#000;--ln:#dcdad3;--gr:#1f7a4d;--grb:#e6f4ec;--rd:#b3372f;--rdb:#fbeae8;--am:#a86a00;--amb:#fff3d9;--wh:#fff}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:Cairo,Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;min-height:100vh}
+.w{max-width:1100px;margin:0 auto;padding:20px 16px 60px}
+.card{background:var(--wh);border:1px solid var(--ln);border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(20,40,75,.06)}
+h1{font-size:clamp(2.6rem,9vw,4.6rem);font-weight:900;color:var(--nv);margin:.2em 0 0;line-height:1.1;letter-spacing:-1px}
+h2{color:var(--nv);margin:.2em 0 .6em}h3{color:var(--nv);margin:0 0 .5em}
+.by{font-size:.8rem;color:#555;margin:.2em 0 1.2em}
+.btn{font:inherit;font-weight:600;background:var(--nv);color:#fff;border:0;border-radius:12px;padding:11px 20px;cursor:pointer;min-height:44px}
+.btn:hover{opacity:.9}.btn:disabled{opacity:.5}.btn.ghost{background:#fff;color:var(--nv);border:1px solid var(--nv)}
+.btn.red{background:var(--rd)}.btn.grn{background:var(--gr)}.btn.sm{padding:5px 12px;min-height:34px;font-size:.85rem}
+:focus-visible{outline:3px solid #6b8cd6;outline-offset:2px}
+label{display:block;font-weight:600;margin:14px 0 4px}
+input,select,textarea{font:inherit;width:100%;padding:11px 12px;border:1px solid #bbb;border-radius:10px;background:#fff}
+textarea{min-height:110px;resize:vertical}.hint{font-size:.85rem;color:#666}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}.grid5{grid-template-columns:1fr 1fr}}
+.opt{cursor:pointer;text-align:right;font:inherit;padding:26px;transition:transform .15s}.opt:hover{transform:translateY(-3px)}
+.opt b{display:block;font-size:1.3rem;color:var(--nv);margin:6px 0}.opt span{color:#444}.ic{font-size:2rem}
+.help{background:#eef2fa;border-color:#c9d5ee;margin:18px 0}
+.lead{margin-top:34px;padding:14px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:.95rem}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.bd{display:inline-block;padding:2px 12px;border-radius:99px;font-weight:600;font-size:.85rem}
+.bd.p{background:var(--amb);color:var(--am)}.bd.a{background:var(--grb);color:var(--gr)}.bd.r{background:var(--rdb);color:var(--rd)}
+.code{font-size:3.2rem;font-weight:900;letter-spacing:8px;color:var(--nv);text-align:center;direction:ltr}
+.stat{text-align:center;padding:14px}.stat b{font-size:2rem;color:var(--nv);display:block}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
+th,td{padding:9px 10px;border-bottom:1px solid var(--ln);text-align:right;font-size:.9rem;vertical-align:top}th{background:#eceae3}
+tr.cl{cursor:pointer}tr.cl:hover{background:#f3f6fc}
+@media(max-width:760px){thead{display:none}table,tbody{display:block;background:none}tr{display:block;background:#fff;border:1px solid var(--ln);border-radius:14px;margin-bottom:10px;padding:6px 10px}
+td{display:flex;justify-content:space-between;gap:12px;border:0;padding:4px 0}td::before{content:attr(data-l);color:#777;font-weight:600;flex:none}}
+.pr{background:var(--rdb);border:1px solid #e8b9b4}.ok{background:var(--grb);border:1px solid #b7dcc7}.ex{background:#f0efe9}
+.pc{border-radius:14px;padding:14px;margin:10px 0}.pc .grid2>div{background:#fff8;padding:8px 10px;border-radius:10px}
+.ov{position:fixed;inset:0;background:#0007;display:flex;align-items:center;justify-content:center;padding:14px;z-index:9}
+.md{background:#fff;border-radius:16px;padding:22px;width:100%;max-width:620px;max-height:90vh;overflow:auto}
+#ts{position:fixed;bottom:16px;left:16px;right:16px;display:flex;flex-direction:column;align-items:center;gap:8px;z-index:20;pointer-events:none}
+.t{padding:10px 18px;border-radius:12px;color:#fff;font-weight:600;background:var(--gr)}.t.e{background:var(--rd)}.t.w{background:var(--am)}
+.sp{width:34px;height:34px;border:4px solid var(--ln);border-top-color:var(--nv);border-radius:50%;animation:s 1s linear infinite;margin:14px auto}@keyframes s{to{transform:rotate(360deg)}}
+.back{background:none;border:0;color:var(--nv);font:inherit;font-weight:600;cursor:pointer;padding:6px 0;margin-bottom:8px}
+pre{direction:ltr;text-align:left;background:#0e1a33;color:#dfe8ff;padding:14px;border-radius:12px;max-height:340px;overflow:auto;font-size:.78rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="w" id="app"></div><div id="ts"></div>
+
+<script>
+/* ضع رابط تطبيق الويب (Apps Script Web App URL) هنا بعد النشر، أو الصقه من صفحة الإعداد: #setup */
+const APP_URL = "";
+/* ===== بيانات الدخول (غيّرها زي ما تحب) ===== */
+const CONFIG = {
+  leader: { c: "leader@gis.2027", p: "gis@leader" },   /* كود وباسورد الليدر */
+  admin:  { c: "mo@nour.gis", p: "mohamed@nour.leader" }    /* كود وباسورد لوحة محمد نور */
+};
+</script>
+
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ls=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k)||'';v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){return ''}};
+const ss=(k,v)=>{try{if(v===undefined)return sessionStorage.getItem(k)||'';v===null?sessionStorage.removeItem(k):sessionStorage.setItem(k,v)}catch(e){return ''}};
+const S={tok:ss('t'),role:ss('r'),rows:[],f:'all',q:'',g:'all',pre:null};
+const URLX=()=>APP_URL||'';/* الخادم يُستخدم فقط لو حطيت الرابط في APP_URL */
+const PEND='قيد المراجعة',ACC='مقبول',REJ='مرفوض';
+async function api(a,d={}){
+  if(!URLX()){try{return await localApi(a,{t:S.tok,...d})}catch(e){if(e.message==='SESSION'){out();throw new Error('انتهت الجلسة، سجل الدخول من جديد')}throw e}}
+  let j;try{const r=await fetch(URLX(),{method:'POST',body:JSON.stringify({a,t:S.tok,...d})});j=await r.json()}catch(e){throw new Error('تعذر الاتصال بالخادم، تأكد من الإنترنت')}
+  if(j.ok===false){if(j.msg==='SESSION'){out();throw new Error('انتهت الجلسة، سجل الدخول من جديد')}throw new Error(j.msg)}return j}
+
+/* ---------- وضع محلي (بدون خادم): يشتغل فورًا والبيانات تتخزن في نفس المتصفح ---------- */
+let LDB=null;
+function localApi(a,d){
+  const K='ikhtar_db_v1',bad=m=>{throw new Error(m)};
+  if(!LDB){try{LDB=JSON.parse(localStorage.getItem(K))||{}}catch(e){LDB={}}}
+  LDB.reqs=LDB.reqs||[];LDB.log=LDB.log||[];LDB.sim=LDB.sim||[];LDB.kv=LDB.kv||{};
+  const save=()=>{try{localStorage.setItem(K,JSON.stringify(LDB))}catch(e){}};
+  const now=()=>new Date().toLocaleString('sv-SE',{timeZone:'Africa/Cairo'});
+  const clean=v=>String(v||'').replace(/[\u0000-\u001f]/g,' ').trim();
+  const phone=p=>{p=String(p||'').replace(/[^\d+]/g,'');if(p.indexOf('+20')==0)p='0'+p.slice(3);else if(p.indexOf('0020')==0)p='0'+p.slice(4);else if(/^20\d{10}$/.test(p))p='0'+p.slice(2);return /^01[0125]\d{8}$/.test(p)?p:null};
+  const pv=r=>({code:r.code,name:r.name,grp:r.grp,phone:r.phone,title:r.title,st:r.st,reason:r.reason,date:r.date,time:r.time});
+  const pv2=r=>({id:r.id,code:r.code,name:r.name,grp:r.grp,phone:r.phone,title:r.title,st:r.st,reason:r.reason,date:r.date,time:r.time,upd:r.upd,note:r.note});
+  const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,10);
+  const rs=LDB.reqs;
+
+  if(a=='login'){
+    const u=CONFIG[d.role];if(!u)bad('طلب غير صالح');
+    if(String(d.c||'')!==u.c||String(d.p||'')!==u.p)bad('بيانات الدخول غير صحيحة');
+    return{ok:true,t:'L_'+d.role+'_'+uid(),role:d.role}}
+  if(a=='submit'){
+    const name=clean(d.name).slice(0,100),title=clean(d.title).slice(0,300),g=String(d.grp),ph=phone(d.phone);
+    if(!name||!title||!g||!d.phone)bad('يرجى إدخال جميع البيانات المطلوبة');
+    if(!/^[1-6]$/.test(g))bad('رقم المجموعة غير صحيح');
+    if(!ph)bad('رقم الهاتف غير صحيح');
+    if(rs.some(x=>x.phone==ph&&x.st!=REJ))bad('لديك طلب مسجل بالفعل، يمكنك متابعة حالة طلبك من خلال صفحة متابعة الطلب.');
+    const used=new Set(rs.map(x=>x.code));let code;
+    for(let i=0;i<200;i++){const c=String(1000+Math.floor(Math.random()*9000));if(!used.has(c)){code=c;break}}
+    if(!code)bad('تعذر إنشاء كود، تواصل مع الليدر');
+    const t=now().split(' ');
+    rs.push({id:uid(),code,name,grp:g,phone:ph,title,st:PEND,reason:'',date:t[0],time:t[1],upd:t[0]+' '+t[1],rev:'',note:''});
+    save();return{ok:true,code}}
+  if(a=='trackCode'){const r=rs.find(x=>x.code==String(d.code));if(!r)bad('كود الطلب غير صحيح');return{ok:true,rows:[pv(r)]}}
+  if(a=='trackPhone'){const ph=phone(d.phone);if(!ph)bad('رقم الهاتف غير صحيح');const m=rs.filter(x=>x.phone==ph);if(!m.length)bad('لا توجد طلبات بهذا الرقم');return{ok:true,rows:m.map(pv)}}
+
+  const m=/^L_(leader|admin)_/.exec(d.t||'');if(!m)bad('SESSION');
+  const role=m[1],by=role=='admin'?'محمد نور':'الليدر';
+  const chg=(id,st,why,by)=>{
+    if([ACC,REJ].indexOf(st)<0)bad('حالة غير صالحة');
+    const x=rs.find(r=>r.id==id);if(!x)bad('الطلب غير موجود');
+    if(x.st==st)bad('الطلب بالحالة نفسها');
+    if(st==ACC&&rs.some(r=>r.phone==x.phone&&r.id!=id&&r.st!=REJ))bad('يوجد طلب نشط آخر لنفس رقم الهاتف');
+    if(st==REJ&&!clean(why))bad('اكتب سبب الرفض');
+    const old=x.st;x.st=st;x.reason=st==REJ?clean(why):'';x.upd=now();x.rev=by;
+    LDB.log.push([now(),id,old,st,clean(why),by])};
+  const simData=()=>{const mp={};rs.forEach(x=>mp[x.id]=pv2(x));
+    return{ok:true,pairs:LDB.sim.filter(x=>mp[x.a]&&mp[x.b]).map(x=>({pid:x.pid,a:mp[x.a],b:mp[x.b],sc:x.sc,rs:x.rs,s:x.s})),ids:LDB.kv.ids||[],at:LDB.kv.at||'',rv:LDB.kv.rv||'',rows:rs.map(pv2)}};
+
+  if(a=='logout')return{ok:true};
+  if(a=='list')return{ok:true,rows:rs.map(pv2),sheet:''};
+  if(a=='detail'){const r=rs.find(x=>x.id==d.id);if(!r)bad('الطلب غير موجود');return{ok:true,r:pv2(r),h:LDB.log.filter(x=>x[1]==d.id).slice().reverse()}}
+  if(a=='setStatus'){chg(d.id,d.st,d.reason,by);save();return{ok:true}}
+  if(a=='analyze'){
+    const live=rs.filter(x=>x.st!=REJ),old={};LDB.sim.forEach(x=>old[x.pid]=x.s);
+    const stop=new Set(['في','من','على','عن','الى','إلى','مع','و','او','أو','ال','هذا','هذه','the','of','and','in','on','for','to','a','an','using','use','study','تحليل','دراسة','استخدام','تطبيق','باستخدام','بحث','عن']);
+    const tok=t=>new Set(String(t).toLowerCase().replace(/[^\u0600-\u06FFa-z0-9\s]/g,' ').split(/\s+/).map(w=>w.replace(/^(وال|بال|كال|فال|لل|ال)/,'').replace(/[أإآ]/g,'ا').replace(/ة$/,'ه').replace(/ى$/,'ي')).filter(w=>w.length>1&&!stop.has(w)));
+    const T={};live.forEach(x=>T[x.id]=tok(x.title));
+    const rows=[];
+    for(let i=0;i<live.length;i++)for(let j=i+1;j<live.length;j++){
+      const A=T[live[i].id],B=T[live[j].id];if(!A.size||!B.size)continue;
+      let n=0;A.forEach(w=>{if(B.has(w))n++});
+      const sc=n/Math.min(A.size,B.size);
+      if(n>=1&&sc>=0.5&&(n>=2||Math.min(A.size,B.size)<=2)){const pid=live[i].id+'|'+live[j].id;
+        rows.push({pid,a:live[i].id,b:live[j].id,sc:Math.round(sc*100),rs:'تشابه في الكلمات المفتاحية للعنوان',s:old[pid]=='مستبعد'?'مستبعد':'محتمل'})}}
+    LDB.sim=rows;LDB.kv.ids=live.map(x=>x.id);LDB.kv.at=now();LDB.kv.rv='';save();return simData()}
+  if(a=='sim')return simData();
+  if(a=='mark'){if(['مستبعد','محتمل'].indexOf(d.s)<0)bad('قيمة غير صالحة');const x=LDB.sim.find(z=>z.pid==d.pid);if(!x)bad('المقارنة غير موجودة');x.s=d.s;save();return{ok:true}}
+  if(a=='reviewed'){LDB.kv.rv=by+' '+now();save();return{ok:true}}
+  if(a=='bulk'){
+    const j=simData(),live=r=>r.st!=REJ,act=j.pairs.filter(p=>p.s=='محتمل'&&live(p.a)&&live(p.b)),inA={};
+    act.forEach(p=>{inA[p.a.id]=1;inA[p.b.id]=1});
+    const pos={};rs.forEach((x,i)=>pos[x.id]=i);let plan=[];
+    if(d.kind=='accept'){plan=j.rows.filter(r=>r.st==PEND&&j.ids.indexOf(r.id)>=0&&!inA[r.id]).map(r=>({id:r.id,name:r.name,title:r.title,st:ACC}))}
+    else if(d.kind=='reject'){const gone={};
+      act.slice().sort((p,q)=>pos[p.b.id]-pos[q.b.id]).forEach(p=>{
+        if(gone[p.a.id]||gone[p.b.id]||p.b.st!=PEND)return;
+        gone[p.b.id]=1;plan.push({id:p.b.id,name:p.b.name,title:p.b.title,st:REJ,keep:p.a.name,why:'تشابه مع بحث الطالب '+p.a.name+' الذي سبقه في التسجيل'})})}
+    else bad('إجراء غير معروف');
+    if(!d.confirm)return{ok:true,plan};
+    plan.forEach(x=>chg(x.id,x.st,x.why||'قبول جماعي بعد مراجعة التشابه',by));save();return{ok:true,n:plan.length}}
+  if(a=='reset'){
+    if(role!='admin')bad('غير مصرح');
+    if(d.phrase!='مسح جميع الطلبات')bad('عبارة التأكيد غير صحيحة');
+    if(String(d.pw||'')!==CONFIG.admin.p)bad('كلمة المرور غير صحيحة');
+    LDB.reqs.length=0;LDB.log=[];LDB.sim=[];LDB.kv={};save();return{ok:true}}
+  bad('طلب غير معروف')}
+function toast(m,k=''){const t=document.createElement('div');t.className='t '+k;t.textContent=m;$('#ts').append(t);setTimeout(()=>t.remove(),3800)}
+function modal(h){const m=document.createElement('div');m.className='ov';m.innerHTML='<div class="md">'+h+'</div>';m.onclick=e=>{if(e.target==m)m.remove()};document.body.append(m);return m}
+function ask(title,body,ok,fn,cls=''){const m=modal(`<h3>${title}</h3>${body}<div class="row"><button class="btn ${cls}" id="y">${ok}</button><button class="btn ghost" id="n">إلغاء</button></div>`);
+  m.querySelector('#n').onclick=()=>m.remove();
+  m.querySelector('#y').onclick=async()=>{const b=m.querySelector('#y');b.disabled=true;try{await fn(m);m.remove()}catch(e){toast(e.message,'e');b.disabled=false}}}
+const badge=s=>`<span class="bd ${s==ACC?'a':s==REJ?'r':'p'}">${s}</span>`;
+const digits=e=>e.value=e.value.replace(/[^\d+]/g,'');
+const view=h=>{$('#app').innerHTML=h;window.scrollTo(0,0)};
+const backBtn=(t='العودة للرئيسية',f='home()')=>`<button class="back" onclick="${f}">← ${t}</button>`;
+function out(){S.tok='';S.role='';ss('t',null);ss('r',null);clearInterval(S.iv);home()}
+
+/* ---------- الرئيسية ---------- */
+function home(){clearInterval(S.iv);view(`
+<h1>اختار بحثك</h1><div class="by">من إعداد محمد نور</div>
+<div class="card help"><div class="ic">💡</div><p style="margin:0">أهلاً وسهلاً بيكم يا شباب، ده موقع بسيط عشان تختار منه البحث بتاعك وميكونش مكرر مع حد تاني. كل اللي مطلوب منك وانت بتسجل تكتب اسمك رباعي صح ورقم مجموعتك ورقم تليفونك اللي عليه الواتساب وعنوان البحث اللي هتكتب عنه.</p></div>
+<div class="grid2">
+<button class="card opt" onclick="apply()"><div class="ic">📝</div><b>عايز أعمل طلب اختيار بحث</b><span>سجل بياناتك واختار موضوع البحث اللي حابب تشتغل عليه</span></button>
+<button class="card opt" onclick="track()"><div class="ic">🔎</div><b>متابعة الطلب</b><span>تابع حالة طلبك واعرف إذا كان اتقبل أو اترفض</span></button></div>
+<div class="card lead"><span>لوحة تحكم لازم تكون ليدر!!</span><button class="btn sm" onclick="login('leader')">أنا ليدر</button></div>
+${URLX()?'':'<p class="hint">ℹ️ الوضع المحلي: البيانات محفوظة في هذا المتصفح فقط. لربط الخادم أضف <b>#setup</b> لرابط الصفحة.</p>'}`)}
+
+/* ---------- تقديم طلب ---------- */
+function apply(p){p=p||{};view(`${backBtn()}<div class="card"><h2>تقديم طلب اختيار بحث</h2>
+<label>الاسم الرباعي</label><input id="nm" value="${esc(p.name)}" maxlength="100"><div class="hint">اكتب اسمك الرباعي بشكل صحيح</div>
+<label>رقم المجموعة</label><select id="gp"><option value="">اختر رقم المجموعة</option>${[1,2,3,4,5,6].map(i=>`<option ${p.grp==i?'selected':''}>${i}</option>`).join('')}</select>
+<label>رقم الهاتف (واتساب)</label><input id="ph" inputmode="tel" value="${esc(p.phone)}" oninput="digits(this)" maxlength="15"><div class="hint">اكتب رقم تليفونك اللي عليه واتساب</div>
+<label>عنوان البحث</label><textarea id="tt" maxlength="300"></textarea>
+<div class="row"><button class="btn" id="sb">تقديم الطلب</button></div></div>`);
+  $('#sb').onclick=async()=>{const d={name:$('#nm').value.trim(),grp:$('#gp').value,phone:$('#ph').value.trim(),title:$('#tt').value.trim()};
+    if(!d.name||!d.grp||!d.phone||!d.title)return toast('يرجى إدخال جميع البيانات المطلوبة','w');
+    $('#sb').disabled=true;try{const j=await api('submit',d);done(j.code)}catch(e){toast(e.message,'e');$('#sb').disabled=false}}}
+function done(c){view(`<div class="card" style="text-align:center"><div class="ic">✅</div><h2>تم تقديم طلبك بنجاح، برجاء الاحتفاظ بالكود الخاص بك لمتابعة حالة الطلب.</h2>
+<div class="code">${esc(c)}</div><button class="btn" onclick="navigator.clipboard&&navigator.clipboard.writeText('${esc(c)}').then(()=>toast('تم نسخ الكود'))">نسخ الكود</button>
+<p class="hint">احتفظ بالكود الخاص بك، حيث يمكنك استخدامه لمتابعة حالة البحث في أي وقت.</p><button class="btn ghost" onclick="home()">الرئيسية</button></div>`)}
+
+/* ---------- متابعة ---------- */
+function track(){view(`${backBtn()}<div class="card"><h2>متابعة حالة طلبك</h2><div class="grid2">
+<div><label>كود الطلب (4 أرقام)</label><input id="cd" inputmode="numeric" maxlength="4" oninput="digits(this)"><div class="row"><button class="btn" id="b1">استعلام عن الطلب</button></div></div>
+<div><label>رقم الهاتف</label><input id="ph" inputmode="tel" maxlength="15" oninput="digits(this)"><div class="row"><button class="btn" id="b2">استعلام برقم الهاتف</button></div></div></div></div><div id="rs"></div>`);
+  const go=async(a,d)=>{$('#rs').innerHTML='<div class="sp"></div>';try{const j=await api(a,d);showT(j.rows)}catch(e){$('#rs').innerHTML='';toast(e.message,'e')}};
+  $('#b1').onclick=()=>/^\d{4}$/.test($('#cd').value)?go('trackCode',{code:$('#cd').value}):toast('كود الطلب غير صحيح','e');
+  $('#b2').onclick=()=>$('#ph').value?go('trackPhone',{phone:$('#ph').value}):toast('رقم الهاتف غير صحيح','e')}
+const MSG={[PEND]:'طلبك قيد المراجعة، برجاء الانتظار حتى يتم اتخاذ القرار.',[ACC]:'تم قبول البحث الخاص بك.',[REJ]:'نعتذر، لم تتم الموافقة على عنوان البحث الخاص بك. يمكنك تغيير الموضوع وتقديم طلب جديد.'};
+function showT(rows){S.tr=rows;$('#rs').innerHTML=rows.map((r,i)=>`<div class="card" style="margin-top:14px"><div class="bar" style="justify-content:space-between">${badge(r.st)}<b>كود: ${esc(r.code)}</b></div>
+<p><b>${esc(r.name)}</b> — مجموعة ${esc(r.grp)}<br>${esc(r.title)}<br><span class="hint">${esc(r.date)} ${esc(r.time)}</span></p><p>${MSG[r.st]}${r.st==REJ&&r.reason?'<br><span class="hint">السبب: '+esc(r.reason)+'</span>':''}</p>
+${r.st==REJ&&i==rows.length-1?`<button class="btn" onclick="apply({name:S.tr[${i}].name,grp:S.tr[${i}].grp,phone:S.tr[${i}].phone})">هغير الموضوع</button>`:''}</div>`).join('')}
+
+/* ---------- دخول ---------- */
+function login(role){view(`${backBtn()}<div class="card" style="max-width:460px;margin:auto"><h2>${role=='admin'?'لوحة تحكم محمد نور':'تسجيل دخول الليدر'}</h2>
+<label>${role=='admin'?'الكود':'كود الليدر'}</label><input id="lc" dir="ltr" autocomplete="off"><label>كلمة المرور</label><input id="lp" type="password" dir="ltr" autocomplete="off">
+<div class="row"><button class="btn" id="lb">تسجيل الدخول</button></div></div>`);
+  const go=async()=>{$('#lb').disabled=true;try{const j=await api('login',{role,c:$('#lc').value.trim(),p:$('#lp').value});S.tok=j.t;S.role=j.role;ss('t',j.t);ss('r',j.role);dash()}catch(e){toast(e.message,'e');$('#lb').disabled=false}};
+  $('#lb').onclick=go;$('#lp').addEventListener('keydown',e=>{if(e.key==='Enter')go()})}
+
+/* ---------- لوحة التحكم ---------- */
+async function dash(){
+  if(!S.tok)return home();const ad=S.role=='admin';
+  view(`<div class="bar" style="justify-content:space-between"><h2 style="margin:0">${ad?'لوحة تحكم محمد نور':'لوحة تحكم الليدر'}</h2><div class="bar">
+<button class="btn ghost sm" onclick="load(1)">تحديث البيانات</button><button class="btn ghost sm" onclick="S.sheet?window.open(S.sheet,'_blank','noopener'):toast('Google Sheets متاح فقط بعد ربط الخادم','w')">فتح Google Sheets</button><button class="btn red sm" onclick="api('logout').catch(()=>{});out()">تسجيل الخروج</button></div></div>
+<div class="grid5" id="st"></div>
+<div class="card" style="margin-top:14px"><h3>الطلبات</h3><div class="bar">
+<select id="fs" style="width:auto"><option value="all">جميع الطلبات</option><option value="pend">الطلبات التي لم تتم مراجعتها</option><option value="rej">الطلبات المرفوضة</option><option value="acc">الطلبات المقبولة</option></select>
+<select id="fg" style="width:auto"><option value="all">اختر المجموعة: جميع المجموعات</option>${[1,2,3,4,5,6].map(i=>`<option value="${i}">مجموعة ${i}</option>`).join('')}</select>
+<input id="fq" placeholder="ابحث عن طالب أو طلب" style="flex:1;min-width:180px"><button class="btn ghost sm" id="fc">مسح</button>
+<button class="btn sm" onclick="sim()">فلترة الطلبات المتشابهة</button></div></div>
+<div id="ls" style="margin-top:12px"></div>
+${ad?`<div class="card" style="margin-top:24px;border-color:#e8b9b4"><h3>إعادة ضبط الموقع</h3><p>تتيح لك هذه الخاصية مسح جميع الطلبات المسجلة وإعادة استخدام الموقع في مادة دراسية جديدة.</p><button class="btn red" onclick="reset()">مسح جميع الطلبات</button></div>`
+:`<div class="card lead"><span>المسؤول الرئيسي؟</span><button class="btn ghost sm" onclick="login('admin')">لوحة تحكم محمد نور</button></div>`}`);
+  $('#fs').onchange=e=>{S.f=e.target.value;list()};$('#fg').onchange=e=>{S.g=e.target.value;list()};$('#fq').oninput=e=>{S.q=e.target.value;list()};
+  $('#fc').onclick=()=>{S.q='';$('#fq').value='';list()};
+  $('#fs').value=S.f;$('#fg').value=S.g;$('#fq').value=S.q;
+  await load();clearInterval(S.iv);S.iv=setInterval(()=>load(),45000)}
+async function load(m){try{const j=await api('list');S.rows=j.rows;S.sheet=j.sheet;stats();list();if(m)toast('تم تحديث البيانات')}catch(e){if($('#ls'))toast(e.message,'e')}}
+function stats(){const r=S.rows,n=s=>r.filter(x=>x.st==s).length;const el=$('#st');if(!el)return;
+  el.innerHTML=[['إجمالي الطلبات',r.length],['قيد المراجعة',n(PEND)],['المقبولة',n(ACC)],['المرفوضة',n(REJ)],['المتشابهة',S.simN||0]].map(a=>`<div class="card stat"><b>${a[1]}</b>${a[0]}</div>`).join('')}
+function list(){const el=$('#ls');if(!el)return;const q=S.q.trim().toLowerCase(),M={all:1,pend:PEND,acc:ACC,rej:REJ};
+  const rs=S.rows.map((r,i)=>({...r,n:i+1})).filter(r=>(M[S.f]==1||r.st==M[S.f])&&(S.g=='all'||r.grp==S.g)&&(!q||[r.name,r.phone,r.code].some(v=>String(v).toLowerCase().includes(q))));
+  if(!rs.length){el.innerHTML='<div class="card">لا توجد طلبات مطابقة.</div>';return}
+  el.innerHTML=`<table><thead><tr><th>#</th><th>الاسم</th><th>عنوان البحث</th><th>المجموعة</th><th>الهاتف</th><th>الكود</th><th>التاريخ</th><th>الوقت</th><th>الحالة</th><th>الإجراءات</th></tr></thead><tbody>${rs.map(r=>`<tr class="cl" onclick="detail('${r.id}')">
+<td data-l="#">${r.n}</td><td data-l="الاسم">${esc(r.name)}</td><td data-l="البحث">${esc(r.title)}</td><td data-l="المجموعة">${esc(r.grp)}</td><td data-l="الهاتف" dir="ltr">${esc(r.phone)}</td><td data-l="الكود">${esc(r.code)}</td><td data-l="التاريخ">${esc(r.date)}</td><td data-l="الوقت">${esc(r.time)}</td><td data-l="الحالة">${badge(r.st)}</td><td data-l="الإجراءات"><button class="btn ghost sm">تفاصيل</button></td></tr>`).join('')}</tbody></table>`}
+async function detail(id){let j;try{j=await api('detail',{id})}catch(e){return toast(e.message,'e')}const r=j.r;
+  const m=modal(`<h3>تفاصيل الطلب ${esc(r.code)}</h3>${badge(r.st)}<p><b>${esc(r.name)}</b> — مجموعة ${esc(r.grp)}<br><span dir="ltr">${esc(r.phone)}</span><br>${esc(r.title)}<br><span class="hint">${esc(r.date)} ${esc(r.time)}</span>${r.reason?'<br>سبب الرفض: '+esc(r.reason):''}</p>
+<h4>سجل المراجعة والتعديلات</h4>${j.h.length?j.h.map(h=>`<div class="hint">${esc(h[0])}: ${esc(h[2])} ← ${esc(h[3])} (${esc(h[5])}) ${esc(h[4])}</div>`).join(''):'<div class="hint">لا توجد تعديلات.</div>'}
+<div class="row">${r.st!=ACC?'<button class="btn grn" data-s="'+ACC+'">'+(r.st==REJ?'تعديل الحالة إلى مقبول':'قبول')+'</button>':''}${r.st!=REJ?'<button class="btn red" data-s="'+REJ+'">'+(r.st==ACC?'تعديل الحالة إلى مرفوض':'رفض')+'</button>':''}<button class="btn ghost" id="cl">إغلاق</button></div>`);
+  m.querySelector('#cl').onclick=()=>m.remove();
+  m.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{const s=b.dataset.s;m.remove();
+    ask('تأكيد تغيير الحالة',`<p>تغيير حالة طلب ${esc(r.name)} إلى «${s}»؟</p><label>سبب التعديل ${s==REJ?'(يظهر للطالب)':'(اختياري)'}</label><textarea id="rsn" style="min-height:70px"></textarea>`,'تأكيد',async()=>{
+      await api('setStatus',{id,st:s,reason:$('#rsn').value.trim()});toast('تم تعديل حالة الطلب بنجاح');load()},s==REJ?'red':'grn')})}
+
+/* ---------- تحليل التشابه ---------- */
+async function sim(){view(`${backBtn('العودة للوحة التحكم','dash()')}<h2>فلترة الطلبات المتشابهة</h2><div id="sm"><div class="sp"></div><p style="text-align:center">جاري تحليل عناوين الأبحاث واكتشاف الموضوعات المتشابهة...</p></div>`);
+  try{drawSim(await api('analyze'))}catch(e){$('#sm').innerHTML=`<div class="card pr">${esc(e.message)}<br>التحليل غير متاح حاليًا.</div>`}}
+function drawSim(j){S.sj=j;const live=r=>r&&r.st!=REJ,act=j.pairs.filter(p=>p.s=='محتمل'&&live(p.a)&&live(p.b)),exc=j.pairs.filter(p=>p.s=='مستبعد'&&live(p.a)&&live(p.b));
+  const inA=new Set();act.forEach(p=>{inA.add(p.a.id);inA.add(p.b.id)});S.simN=inA.size;
+  const gr=S.rows.length?S.rows:[];const ok=j.rows.filter(r=>j.ids.includes(r.id)&&live(r)&&!inA.has(r.id));
+  const info=r=>`<div><b>${esc(r.name)}</b><br>${esc(r.title)}<br><span class="hint">مجموعة ${esc(r.grp)} · <span dir="ltr">${esc(r.phone)}</span> · كود ${esc(r.code)}<br>${esc(r.date)} ${esc(r.time)}</span></div>`;
+  const par={};const f=x=>par[x]==x?x:(par[x]=f(par[x]));act.forEach(p=>{par[p.a.id]=par[p.a.id]||p.a.id;par[p.b.id]=par[p.b.id]||p.b.id});act.forEach(p=>par[f(p.a.id)]=f(p.b.id));
+  const G={};act.forEach(p=>(G[f(p.a.id)]=G[f(p.a.id)]||[]).push(p));
+  $('#sm').innerHTML=`<div class="card"><b>الملخص:</b> مجموعات التشابه: ${Object.keys(G).length} · طلبات تحتاج مراجعة: ${inA.size} · بلا تشابه واضح: ${ok.length}<br><span class="hint">النتائج اقتراحات من الذكاء الاصطناعي والقرار النهائي لليدر. آخر تحليل: ${esc(j.at)} ${j.rv?' · تمت المراجعة: '+esc(j.rv):''}</span></div>
+<h3 style="margin-top:20px">الأبحاث المحتمل تشابهها</h3>${Object.values(G).map((g,i)=>`<div class="card"><b>المجموعة ${i+1}</b>${g.map(p=>`<div class="pc pr"><div class="grid2">${info(p.a)}${info(p.b)}</div><div class="bar" style="justify-content:space-between"><span class="hint">التشابه التقديري: ${p.sc}% — ${esc(p.rs)}</span><button class="btn sm" onclick="mark('${p.pid}','مستبعد')">لا، مش متشابه</button></div></div>`).join('')}</div>`).join('')||'<div class="card">لا توجد أبحاث متشابهة.</div>'}
+${exc.length?`<h3 style="margin-top:20px">المراجعات المستبعدة</h3>${exc.map(p=>`<div class="pc ex"><div class="grid2">${info(p.a)}${info(p.b)}</div><button class="btn ghost sm" onclick="mark('${p.pid}','محتمل')">إعادة للمراجعة</button></div>`).join('')}`:''}
+<h3 style="margin-top:20px">الأبحاث غير المتشابهة</h3><p class="hint">عدم اكتشاف التشابه لا يعني أن الموضوع فريد تمامًا، والقرار النهائي يعود لليدر.</p>
+${ok.map(r=>`<div class="pc ok"><span class="bd a">لا يوجد تشابه واضح</span> ${info(r)}</div>`).join('')||'<div class="card">لا توجد.</div>'}
+<div class="card" style="margin-top:20px"><h3>القرارات النهائية</h3><div class="row"><button class="btn" onclick="rv()">تمت المراجعة</button><button class="btn grn" onclick="bulk('accept')">قبول الأبحاث التي ليست متشابهة</button><button class="btn red" onclick="bulk('reject')">رفض البحث المتشابه مع زميله الذي سبقه في التسجيل</button></div></div>`}
+async function mark(pid,s){try{await api('mark',{pid,s});drawSim(await api('sim'))}catch(e){toast(e.message,'e')}}
+async function rv(){try{await api('reviewed');toast('تم حفظ نتائج مراجعة التشابه');drawSim(await api('sim'))}catch(e){toast(e.message,'e')}}
+async function bulk(kind){let p;try{p=await api('bulk',{kind})}catch(e){return toast(e.message,'e')}
+  if(!p.plan.length)return toast('لا توجد طلبات لتنفيذ هذا الإجراء','w');
+  ask(kind=='accept'?'تأكيد القبول':'تأكيد الرفض',`<p>عدد الطلبات: ${p.plan.length}</p>${p.plan.map(x=>`<div class="hint" style="margin-bottom:6px"><b>${esc(x.name)}</b> — ${esc(x.title)}${x.keep?'<br>سبب الرفض: تشابه مع بحث '+esc(x.keep)+' الذي سبقه في التسجيل':''}</div>`).join('')}`,'تأكيد التنفيذ',async()=>{
+    const r=await api('bulk',{kind,confirm:1});toast('تم تعديل حالة '+r.n+' طلب');await load();drawSim(await api('sim'))},kind=='accept'?'grn':'red')}
+
+/* ---------- إعادة الضبط ---------- */
+function reset(){ask('إعادة ضبط الموقع','<p style="color:#b3372f"><b>تحذير: سيتم حذف جميع الطلبات المقبولة والمرفوضة وقيد المراجعة، وجميع نتائج التشابه وسجلات المراجعة المرتبطة بها. لا يمكن التراجع عن هذه العملية.</b></p><label>اكتب العبارة: مسح جميع الطلبات</label><input id="ph1"><label>كلمة مرور المسؤول</label><input id="pw" type="password" dir="ltr">','مسح نهائي',async()=>{
+  await api('reset',{phrase:$('#ph1').value.trim(),pw:$('#pw').value});toast('تمت إعادة ضبط الموقع بنجاح، ويمكنك الآن استخدامه لمادة دراسية جديدة.');S.simN=0;await load()},'red')}
+
+/* ---------- صفحة الإعداد ---------- */
+const gsCode=()=>$('#gs').textContent.trim().replace("const LC='',LP='',AC='',AP=''","const LC="+JSON.stringify(CONFIG.leader.c)+",LP="+JSON.stringify(CONFIG.leader.p)+",AC="+JSON.stringify(CONFIG.admin.c)+",AP="+JSON.stringify(CONFIG.admin.p));
+function setup(){view(`${backBtn()}<div class="card"><h2>إعداد الخادم (مرة واحدة)</h2><ol>
+<li>افتح <b>script.google.com</b> ← مشروع جديد، والصق الكود التالي في Code.gs.</li>
+<li>الكود المنسوخ فيه بيانات الدخول من CONFIG جاهزة؛ أضف مفتاح Gemini (اختياري) في <b>GEMINI</b>، ثم شغّل <b>setup()</b> ووافق على الصلاحيات. هذا ينشئ الجدول الخاص بك ويحفظ كلمات المرور مشفّرة في إعدادات السكريبت.</li>
+<li>Deploy ← New deployment ← Web app ← Execute as: <b>Me</b> ← Who has access: <b>Anyone</b> ثم انسخ الرابط والصقه هنا.</li></ol>
+<button class="btn ghost" onclick="navigator.clipboard.writeText(gsCode()).then(()=>toast('تم نسخ الكود'))">نسخ كود الخادم</button><pre>${esc(gsCode())}</pre>
+<label>رابط تطبيق الويب</label><input id="uu" dir="ltr" value="${esc(URLX())}" placeholder="https://script.google.com/macros/s/.../exec"><div class="row"><button class="btn" onclick="navigator.clipboard&&navigator.clipboard.writeText($('#uu').value.trim());toast('انسخ الرابط وحطه في APP_URL أعلى الملف');">نسخ الرابط</button></div>
+<p class="hint">للنشر: ضع الرابط في الثابت APP_URL أعلى الملف ليعمل لكل الطلاب. بيانات الدخول موجودة في CONFIG أعلى الملف.</p></div>`)}
+
+if(location.hash=='#setup')setup();else if(S.tok)dash();else home();
+</script>
+
+<!-- كود الخادم: يُلصق في Google Apps Script (لا يحتوي على أي كلمات مرور) -->
+<script type="text/plain" id="gs">
+const TZ='Africa/Cairo',PN='الطلبات',LN='سجل التعديلات',SN='نتائج التشابه',KN='إعدادات',AN='سجل إداري';
+const PEND='قيد المراجعة',ACC='مقبول',REJ='مرفوض';
+const HEAD={};
+HEAD[PN]=['المعرف','الكود','الاسم الرباعي','المجموعة','الهاتف','عنوان البحث','الحالة','سبب الرفض','تاريخ التسجيل','وقت التسجيل','آخر تعديل','آخر مراجعة','ملاحظات الليدر'];
+HEAD[LN]=['الوقت','المعرف','من','إلى','السبب','بواسطة'];
+HEAD[SN]=['المعرف','أ','ب','الدرجة','السبب','الحالة','بواسطة','الوقت'];
+HEAD[KN]=['المفتاح','القيمة'];HEAD[AN]=['الوقت','العملية','بواسطة'];
+const P=()=>PropertiesService.getScriptProperties();
+const DB=()=>SpreadsheetApp.openById(P().getProperty('SHEET_ID'));
+const SH=n=>DB().getSheetByName(n);
+const now=()=>Utilities.formatDate(new Date(),TZ,'yyyy-MM-dd HH:mm:ss');
+const bad=m=>{throw new Error(m)};
+const CA=()=>CacheService.getScriptCache();
+function hp(p,s){let h=s+p;for(let i=0;i<1500;i++)h=Utilities.base64Encode(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256,h+s));return h}
+
+// شغّلها مرة واحدة ثم امسح القيم
+function setup(){
+  const LC='',LP='',AC='',AP='',GEMINI='';
+  if(!LC||!LP||!AC||!AP)bad('املأ القيم أولاً');
+  const ss=SpreadsheetApp.create('اختار بحثك - قاعدة بيانات الطلاب');
+  Object.keys(HEAD).forEach((n,i)=>{const s=i?ss.insertSheet(n):ss.getSheets()[0].setName(n);
+    s.getRange('A:M').setNumberFormat('@');s.appendRow(HEAD[n]);s.setFrozenRows(1);s.setRightToLeft(true)});
+  const u={};[['leader',LC,LP],['admin',AC,AP]].forEach(x=>{const s=Utilities.getUuid();u[x[0]]={s:s,c:hp(x[1],s),p:hp(x[2],s)}});
+  P().setProperties({SHEET_ID:ss.getId(),USERS:JSON.stringify(u),GEMINI_KEY:GEMINI});
+  Logger.log(ss.getUrl());
+}
+function doGet(){return ContentService.createTextOutput('OK')}
+function doPost(e){let o;
+  try{o=route(JSON.parse(e.postData.contents))}catch(x){o={ok:false,msg:x.message}}
+  return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON)}
+
+function route(d){
+  const a=d.a,L=LockService.getScriptLock();L.waitLock(25000);
+  try{
+    if(a=='login')return login(d);
+    if(a=='submit')return submit(d);
+    if(a=='trackCode')return track(d,true);
+    if(a=='trackPhone')return track(d,false);
+    const role=CA().get('s_'+d.t);if(!role)bad('SESSION');
+    const by=role=='admin'?'محمد نور':'الليدر';
+    if(a=='logout'){CA().remove('s_'+d.t);return{ok:true}}
+    if(a=='list')return{ok:true,rows:reqs().map(pv2),sheet:DB().getUrl()};
+    if(a=='detail'){const r=reqs().find(x=>x.id==d.id);if(!r)bad('الطلب غير موجود');
+      return{ok:true,r:pv2(r),h:SH(LN).getDataRange().getValues().slice(1).filter(x=>x[1]==d.id).reverse()}}
+    if(a=='setStatus'){chg(d.id,d.st,d.reason,by);return{ok:true}}
+    if(a=='analyze')return analyze(by);
+    if(a=='sim')return simData();
+    if(a=='mark'){mark(d.pid,d.s,by);return{ok:true}}
+    if(a=='reviewed'){kv('rv',by+' '+now());const s=SH(AN);s.appendRow([now(),'مراجعة نتائج التشابه',by]);return{ok:true}}
+    if(a=='bulk')return bulk(d,by);
+    if(a=='reset'){if(role!='admin')bad('غير مصرح');return reset(d)}
+    bad('طلب غير معروف');
+  }finally{L.releaseLock()}}
+
+function login(d){
+  const c=CA(),k='f_'+d.role;if(+c.get(k)>=5)bad('تم إيقاف المحاولات مؤقتًا، حاول بعد 15 دقيقة');
+  const u=JSON.parse(P().getProperty('USERS'))[d.role];if(!u)bad('طلب غير صالح');
+  if(hp(String(d.c||''),u.s)!==u.c||hp(String(d.p||''),u.s)!==u.p){
+    c.put(k,String((+c.get(k)||0)+1),900);Utilities.sleep(700);bad('بيانات الدخول غير صحيحة')}
+  c.remove(k);const t=Utilities.getUuid()+Utilities.getUuid();c.put('s_'+t,d.role,21600);
+  SH(AN).appendRow([now(),'تسجيل دخول',d.role=='admin'?'محمد نور':'الليدر']);
+  return{ok:true,t:t,role:d.role}}
+
+function reqs(){const s=SH(PN),n=s.getLastRow();if(n<2)return[];
+  return s.getRange(2,1,n-1,13).getValues().map((v,i)=>({r:i+2,id:v[0],code:v[1],name:v[2],grp:v[3],phone:v[4],title:v[5],st:v[6],reason:v[7],date:v[8],time:v[9],upd:v[10],rev:v[11],note:v[12]}))}
+const put=x=>SH(PN).getRange(x.r,1,1,13).setValues([[x.id,x.code,x.name,x.grp,x.phone,x.title,x.st,x.reason,x.date,x.time,x.upd,x.rev,x.note]]);
+const pv=r=>({code:r.code,name:r.name,grp:r.grp,phone:r.phone,title:r.title,st:r.st,reason:r.reason,date:r.date,time:r.time});
+const pv2=r=>({id:r.id,code:r.code,name:r.name,grp:r.grp,phone:r.phone,title:r.title,st:r.st,reason:r.reason,date:r.date,time:r.time,upd:r.upd,note:r.note});
+function phone(p){p=String(p||'').replace(/[^\d+]/g,'');
+  if(p.indexOf('+20')==0)p='0'+p.slice(3);else if(p.indexOf('0020')==0)p='0'+p.slice(4);else if(/^20\d{10}$/.test(p))p='0'+p.slice(2);
+  return /^01[0125]\d{8}$/.test(p)?p:null}
+const clean=v=>String(v||'').replace(/[\u0000-\u001f]/g,' ').trim();
+
+function submit(d){
+  const name=clean(d.name).slice(0,100),title=clean(d.title).slice(0,300),g=String(d.grp),ph=phone(d.phone);
+  if(!name||!title||!g||!d.phone)bad('يرجى إدخال جميع البيانات المطلوبة');
+  if(!/^[1-6]$/.test(g))bad('رقم المجموعة غير صحيح');
+  if(!ph)bad('رقم الهاتف غير صحيح');
+  const rs=reqs();
+  if(rs.some(x=>x.phone==ph&&x.st!=REJ))bad('لديك طلب مسجل بالفعل، يمكنك متابعة حالة طلبك من خلال صفحة متابعة الطلب.');
+  const used=new Set(rs.map(x=>x.code));let code;
+  for(let i=0;i<200;i++){const c=String(1000+Math.floor(Math.random()*9000));if(!used.has(c)){code=c;break}}
+  if(!code)bad('تعذر إنشاء كود، تواصل مع الليدر');
+  const t=now().split(' ');
+  SH(PN).appendRow([Utilities.getUuid(),code,name,g,ph,title,PEND,'',t[0],t[1],t[0]+' '+t[1],'','']);
+  return{ok:true,code:code}}
+
+function track(d,byCode){
+  const c=CA(),n=+c.get('tr')||0;if(n>40)bad('محاولات كثيرة، انتظر دقيقة');c.put('tr',String(n+1),60);
+  const rs=reqs();
+  if(byCode){const r=rs.find(x=>x.code==String(d.code));if(!r)bad('كود الطلب غير صحيح');return{ok:true,rows:[pv(r)]}}
+  const ph=phone(d.phone);if(!ph)bad('رقم الهاتف غير صحيح');
+  const m=rs.filter(x=>x.phone==ph);if(!m.length)bad('لا توجد طلبات بهذا الرقم');
+  return{ok:true,rows:m.map(pv)}}
+
+function lg(id,o,n,why,by){SH(LN).appendRow([now(),id,o,n,why||'',by])}
+function chg(id,st,why,by){
+  if([ACC,REJ].indexOf(st)<0)bad('حالة غير صالحة');
+  const rs=reqs(),x=rs.find(r=>r.id==id);if(!x)bad('الطلب غير موجود');
+  if(x.st==st)bad('الطلب بالحالة نفسها');
+  if(st==ACC&&rs.some(r=>r.phone==x.phone&&r.id!=id&&r.st!=REJ))bad('يوجد طلب نشط آخر لنفس رقم الهاتف');
+  if(st==REJ&&!clean(why))bad('اكتب سبب الرفض');
+  const old=x.st;x.st=st;x.reason=st==REJ?clean(why):'';x.upd=now();x.rev=by;put(x);lg(id,old,st,clean(why),by)}
+
+function kv(k,v){const s=SH(KN),d=s.getDataRange().getValues();
+  if(v===undefined){const r=d.find(x=>x[0]==k);return r?r[1]:''}
+  const i=d.findIndex(x=>x[0]==k);if(i<0)s.appendRow([k,v]);else s.getRange(i+1,2).setValue(v)}
+
+function ai(items){
+  const key=P().getProperty('GEMINI_KEY');if(!key)bad('مفتاح خدمة الذكاء الاصطناعي غير مضبوط');
+  const prompt='أنت مساعد أكاديمي في الجيوماتكس. فيما يلي عناوين أبحاث طلاب (id, title). اجمع فقط العناوين التي تتناول نفس الموضوع أو موضوعات شديدة التقارب (نفس الفكرة والنطاق والهدف حتى لو اختلفت الصياغة أو اللغة). لا تعتبر العناوين متشابهة لمجرد أنها في المجال العلمي نفسه. أعد JSON فقط بالشكل {"groups":[{"ids":["..",".."],"score":0-100,"reason":"سبب مختصر بالعربية"}]} ولا تُدرج مجموعات من عنصر واحد.\n'+JSON.stringify(items);
+  const r=UrlFetchApp.fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',{method:'post',contentType:'application/json',headers:{'x-goog-api-key':key},muteHttpExceptions:true,
+    payload:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:0}})});
+  if(r.getResponseCode()!=200)bad('تعذر الاتصال بخدمة الذكاء الاصطناعي');
+  try{return JSON.parse(JSON.parse(r.getContentText()).candidates[0].content.parts[0].text).groups||[]}catch(e){bad('استجابة غير مفهومة من خدمة الذكاء الاصطناعي')}}
+
+function analyze(by){
+  const rs=reqs().filter(x=>x.st!=REJ),pos={};rs.forEach(x=>pos[x.id]=x.r);
+  const s=SH(SN),old={};s.getDataRange().getValues().slice(1).forEach(x=>old[x[0]]=x[5]);
+  const rows=[];
+  if(rs.length>1){
+    const gs=ai(rs.map(x=>({id:x.id,title:x.title})));
+    const seen={};
+    gs.forEach(g=>{const ids=(g.ids||[]).filter(i=>pos[i]).sort((a,b)=>pos[a]-pos[b]);
+      for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++){const pid=ids[i]+'|'+ids[j];if(seen[pid])continue;seen[pid]=1;
+        rows.push([pid,ids[i],ids[j],Math.round(+g.score||0),clean(g.reason).slice(0,200),old[pid]=='مستبعد'?'مستبعد':'محتمل','',now()])}})}
+  if(s.getLastRow()>1)s.getRange(2,1,s.getLastRow()-1,8).clearContent();
+  if(rows.length)s.getRange(2,1,rows.length,8).setValues(rows);
+  kv('ids',JSON.stringify(rs.map(x=>x.id)));kv('at',now());kv('rv','');
+  SH(AN).appendRow([now(),'تحليل التشابه',by]);
+  return simData()}
+
+function simData(){
+  const rs=reqs(),m={};rs.forEach(x=>m[x.id]=pv2(x));
+  const s=SH(SN),pairs=s.getLastRow()<2?[]:s.getRange(2,1,s.getLastRow()-1,8).getValues().filter(x=>m[x[1]]&&m[x[2]]).map(x=>({pid:x[0],a:m[x[1]],b:m[x[2]],sc:x[3],rs:x[4],s:x[5]}));
+  return{ok:true,pairs:pairs,ids:JSON.parse(kv('ids')||'[]'),at:kv('at'),rv:kv('rv'),rows:rs.map(pv2)}}
+
+function mark(pid,st,by){if(['مستبعد','محتمل'].indexOf(st)<0)bad('قيمة غير صالحة');
+  const s=SH(SN),d=s.getDataRange().getValues(),i=d.findIndex(x=>x[0]==pid);if(i<1)bad('المقارنة غير موجودة');
+  s.getRange(i+1,6,1,3).setValues([[st,by,now()]])}
+
+function bulk(d,by){
+  const j=simData(),live=r=>r.st!=REJ,act=j.pairs.filter(p=>p.s=='محتمل'&&live(p.a)&&live(p.b)),inA={};
+  act.forEach(p=>{inA[p.a.id]=1;inA[p.b.id]=1});
+  const pos={};reqs().forEach(x=>pos[x.id]=x.r);let plan=[];
+  if(d.kind=='accept'){
+    plan=j.rows.filter(r=>r.st==PEND&&j.ids.indexOf(r.id)>=0&&!inA[r.id]).map(r=>({id:r.id,name:r.name,title:r.title,st:ACC}))
+  }else if(d.kind=='reject'){
+    const gone={};
+    act.slice().sort((p,q)=>pos[p.b.id]-pos[q.b.id]).forEach(p=>{
+      if(gone[p.a.id]||gone[p.b.id]||p.b.st!=PEND)return;
+      gone[p.b.id]=1;plan.push({id:p.b.id,name:p.b.name,title:p.b.title,st:REJ,keep:p.a.name,why:'تشابه مع بحث الطالب '+p.a.name+' الذي سبقه في التسجيل'})})
+  }else bad('إجراء غير معروف');
+  if(!d.confirm)return{ok:true,plan:plan};
+  plan.forEach(x=>chg(x.id,x.st,x.why||'قبول جماعي بعد مراجعة التشابه',by));
+  SH(AN).appendRow([now(),(d.kind=='accept'?'قبول جماعي: ':'رفض جماعي: ')+plan.length,by]);
+  return{ok:true,n:plan.length}}
+
+function reset(d){
+  if(d.phrase!='مسح جميع الطلبات')bad('عبارة التأكيد غير صحيحة');
+  const u=JSON.parse(P().getProperty('USERS')).admin;if(hp(String(d.pw||''),u.s)!==u.p)bad('كلمة المرور غير صحيحة');
+  [PN,LN,SN,KN].forEach(n=>{const s=SH(n);if(s.getLastRow()>1)s.getRange(2,1,s.getLastRow()-1,s.getLastColumn()).clearContent()});
+  SH(AN).appendRow([now(),'إعادة ضبط الموقع','محمد نور']);return{ok:true}}
+</script>
+</body>
+</html>
